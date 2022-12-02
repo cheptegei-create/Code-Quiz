@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Quiz</title>
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <div class="container landing hidden">
+      <h1>Are you ready for the code quiz?</h1>
+      <p>
+        Try to answer all questions correctly because for every wrong question
+        you lose 20 seconds. Make sure you are in a silent place free of
+        distructions.
+      </p>
+      <a href="" class="btn" id="start-btn"><button>Start</button></a>
+      <a href="" id="highscore-btn" class="btn"><button>High Score</button></a>
+    </div>
+
+    <div class="container quiz">
+      <div class="timer-section">
+        <span id="timer"></span>
+      </div>
+
+      <div class="first">
+        <p id="question">Which among the following is not a JavaScript data type?</p>
+        <ul>
+          <li id="choices" data-number="1">null</li>
+          <li id="choices" data-number="2">string</li>
+          <li id="choices" data-number="3">boolean</li>
+          <li id="choices" data-number="4">integer</li>
+        </ul>
+        <div class="message">
+          <hr />
+          <span id="message"></span>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="./assets/js/script.js"></script>
+  </body>
+</html>
