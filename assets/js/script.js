@@ -1,64 +1,223 @@
 //targeting elements in the HTML section
-var question = document.querySelector('#question');
-var choices = document.querySelectorAll('#choices');
-var message = document.querySelector('#message');
-var timer = document.querySelector('#timer');
-var startBtn = document.querySelector('#start-btn');
-var highScoreBtn = document.querySelector('#highscore-btn');
-var scores = document.querySelector('.scores');
-var timeElement = document.querySelector('#timer-count');
+var quiz = document.querySelector("#question");
+/*var choices = document.querySelectorAll("#choices");*/
+var message = document.querySelector("#message");
+var timer = document.querySelector("#timer");
+var startBtn = document.querySelector("#start-btn");
+var highScoreBtn = document.querySelector("#highscore-btn");
+var scores = document.querySelector(".scores");
+var timeElement = document.querySelector("#timer-count");
+var container = document.querySelectorAll(".container");
+/*var ch1 = document.querySelectorAll(".choice1");
+var ch2 = document.querySelectorAll(".choice2");
+var ch3 = document.querySelectorAll(".choice3");
+var ch4 = document.querySelectorAll(".choice4");*/
 
-//Declaring empty variables to help with the events
-var currentQuestion = {};
-var correctAnswer = true;
+//Declaring variables
+var currentQuestion;
+var complete = false;
 var scoreCounter = 0;
-var availableQuestions = {};
 var timerCount;
 var timer;
 
 //Creating an object for questions
-var questions = {
-    q1: {
-        question: 'what is 2 + 2?',
-        choice1: '2',
-        choice2: '4',
-        choice3: '22',
-        choice4: '0',
-        answer: 2,
-     },
-     q2: {
-        question: 'what is 2 + 2?',
-        choice1: '2',
-        choice2: '4',
-        choice3: '22',
-        choice4: '0',
-        answer: 2,
-     },
-     q3: {
-        question: 'what is 2 + 2?',
-        choice1: '2',
-        choice2: '4',
-        choice3: '22',
-        choice4: '0',
-        answer: 2,
-     },
-     q4: {
-        question: 'what is 2 + 2?',
-        choice1: '2',
-        choice2: '4',
-        choice3: '22',
-        choice4: '0',
-        answer: 2,
-     },
-};
+var questions = [
+    {
+    question: "Which among the following is not a JavaScript data type?",
+    answers: {
+    1: "null",
+    2: "string",
+    3: "boolean",
+    4: "integer",
+    },
+    correctAnswer: 4
+  },
+  {
+    question: "Which among the following is not a JavaScript data type?",
+    answers: {
+    1: "null",
+    2: "string",
+    3: "boolean",
+    4: "integer",
+    },
+    correctAnswer: 4
+  },
+  {
+    question: "Which among the following is not a JavaScript data type?",
+    answers: {
+    1: "null",
+    2: "string",
+    3: "boolean",
+    4: "integer",
+    },
+    correctAnswer: 4
+  },
+  {
+    question: "Which among the following is not a JavaScript data type?",
+    answers: {
+    1: "null",
+    2: "string",
+    3: "boolean",
+    4: "integer",
+    },
+    correctAnswer: 4
+  },
+ 
+];
 
-console.log(questions.q4.question);
 
 //creating an init function which will be called when the page loads
 function init() {
-    getScores();
-} 
+  getScores();
+}
+
+var maxQuiz = 4;
+var scorePoints = 100;
+//creating a start game function that initiates when the start button is clicked
+startBtn.addEventListener("click", function(event) {
+event.preventDefault()
+console.log('game is starting');
+timerCount = 100;
+scoreCounter = 0;
+complete = false;
+getNewQuiz();
+ /* initiateGame();
+  complete = false;
+  timerCount = 100;
+  renderQuestions();
+  startTimer();*/
+});
+//Hides the landing page when the code quiz starts and shows it after submitting or when time runs out
+function hideLanding() {
+    var mode = "show";
+  if (mode === "show" && getNewQuiz) {
+    mode = "hidden";
+    container.setAttribute("class", "hidden");
+  } else if (submitButton || timerCount === 0) {
+    mode = "show"
+    container.setAttribute("class", "show");
+  }
+}
+
+//creating a funtion for getting a new question. Got idea from https://simplestepscode.com/javascript-quiz-tutorial/
+function getNewQuiz() {
+    console.log('quiz is reading');
+    //Creating a place to store our current question and answer
+currentQuestion = []
+var answers;
+
+//for loop for the questions
+for (var x=0; x<questions.length; x++) {
+    //reset all the answers
+    answers= [];
+
+    //for each answer
+    for (number in questions[x].answers) {
+        //add a radio button
+        answers.push('<label>'
+        + '<input type="radio" name="question"'+x+'value="'+number+'">'
+        + number + ': '
+        + questions[x].answers[number]
+      + '</label>');
+    }
+    //add the question and answer to current Question
+    currentQuestion.push('<div class="current">' + questions[x].question + '</div>' + '<div class="answers">' + answers.join('') + '</div>');
+}
+
+//dsiplay on the html page
+quiz.innerHTML = currentQuestion.join('');
+    
+//moves to the next number question
+
+//randomly selects the questions from the questions object
+/*function getRandomObject(questions) {
+    var indexQuiz = Object.keys(questions.q);
+    
+    return indexQuiz[Math.floor(Math.random() * indexQuiz.length)];
+}*/
+//appends the current question to the screen
+/*var indexQuiz = Object.keys(questions);
+console.log(indexQuiz);*/
+
+//randomly selects the questions from the questions object
+/*var indexQuiz = Object.entries(questions);
+for (var x = 0; x < indexQuiz.length; x++) {
+currentQuestion = indexQuiz[Math.floor(Math.random() * indexQuiz.length)];
+console.log(JSON.stringify(currentQuestion));
+//appends the current question to the screen
+quiz.textContent = currentQuestion[1].question;
+ch1.textContent = currentQuestion[1].choice1;
+ch2.textContent = currentQuestion[1].choice2;
+ch3.textContent = currentQuestion[1].choice3;
+ch4.textContent = currentQuestion[1].choice4;
+}*/
+//adding event listener on the choices
+/*choices.addEventListener("click", function(event) {
+    var element = event.target;
+
+    if (element.matches(currentQuestion[1].answer)) {
+        
+    }
+
+});*/
+
+
+
+    console.log("I am here");
+//Updates the scores for the quiz and stores it in local storage
+ /*   if (currentQuestion.length === 0) {
+        localStorage.setItem('mostRecentScore', scoreCounter);
+    }*/
+
+}
+
+
+/*function initiateGame() {
+    
+    var mode = "hidden";
+  if (divTags[0] === "show" && divTags[1] === "hidden") {
+    mode = "show";
+    divTags[0].setAttribute("class", "hidden");
+    divTags[1].setAttribute("class", "show");
+  }
+}
+
+function youWin() {
+  message.textContent = "Correct Answer";
+  scoreCounter++;
+  setScores();
+}
+//when the chooses the wrong answer it displays "incorrect"
+function youLose() {
+  message.textContent = "Incorrect";
+  timerCount = timerCount - 20;
+}*/
+// start timer function the initiates when the button is clicked
+function startTimer() {
+  //set timer
+  timer = setInterval(function () {
+    timerCount--;
+    timeElement.textContent = timerCount;
+    if (timerCount >= 0) {
+      //clear interval and stops time
+      if (complete && timerCount > 0) {
+        clearInterval(timer);
+        window.alert("Congrats, Good Job!");
+      }
+    }
+    if (timerCount === 0) {
+      //clear interval
+      clearInterval(timer);
+      window.alert("Try again next time!");
+    }
+  }, 1000);
+}
+
+/*function renderQuestions() {
+    currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+}*/
 //WHEN I click the start button THEN a timer starts and I am presented with a question
+//startBtn.addEventListener("click", startGame);
 //WHEN I answer a question THEN I am presented with another question
 //WHEN I answer a question incorrectly THEN time is subtracted from the clock
 //WHEN all questions are answered or the timer reaches 0 THEN the game is over

@@ -30,6 +30,16 @@ ul {
     display: none;
 }
 
+.show {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vh;
+    height: 100vh;
+    margin: 0 auto;
+}
+
 .btn {
     margin: 5px;
 }
