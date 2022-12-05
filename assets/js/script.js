@@ -12,14 +12,14 @@ var container = document.querySelectorAll(".container");
 var ch2 = document.querySelectorAll(".choice2");
 var ch3 = document.querySelectorAll(".choice3");
 var ch4 = document.querySelectorAll(".choice4");*/
-
+/*
 //Declaring variables
 var currentQuestion;
 var complete = false;
 var scoreCounter = 0;
 var timerCount;
 var timer;
-
+*/
 //Creating an object for questions
 var questions = [
     {
@@ -62,9 +62,14 @@ var questions = [
     },
     correctAnswer: 4
   },
- 
 ];
 
+var askedQuestions = [];
+var leaderBoard = [];
+var totalScore = 60;
+var deductedPoints = 10;
+
+/*
 
 //creating an init function which will be called when the page loads
 function init() {
@@ -86,7 +91,7 @@ getNewQuiz();
   timerCount = 100;
   renderQuestions();
   startTimer();*/
-});
+/*});
 //Hides the landing page when the code quiz starts and shows it after submitting or when time runs out
 function hideLanding() {
     var mode = "show";
@@ -162,15 +167,15 @@ ch4.textContent = currentQuestion[1].choice4;
 });*/
 
 
-
+/*
     console.log("I am here");
 //Updates the scores for the quiz and stores it in local storage
  /*   if (currentQuestion.length === 0) {
         localStorage.setItem('mostRecentScore', scoreCounter);
     }*/
-
+/*
 }
-
+*/
 
 /*function initiateGame() {
     
@@ -193,7 +198,7 @@ function youLose() {
   timerCount = timerCount - 20;
 }*/
 // start timer function the initiates when the button is clicked
-function startTimer() {
+/*function startTimer() {
   //set timer
   timer = setInterval(function () {
     timerCount--;
@@ -212,7 +217,7 @@ function startTimer() {
     }
   }, 1000);
 }
-
+*/
 /*function renderQuestions() {
     currentQuestion = questions[Math.floor(Math.random() * questions.length)];
 }*/

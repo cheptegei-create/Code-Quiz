@@ -24,18 +24,23 @@
       <div class="timer-section">
         <h3>Remaining time:<span id="timer-count">0</span></h3>
       </div>
-      <div class="score-card">
-        <h3>Your Score: <span class="scores">0</span></h3>
-      </div>
-
-      <div class="first">
-        <div id="question"></div>
-        <div class="message">
-          <hr />
-          <span id="message"></span>
-        </div>
+    </div>
+    <div class="result">
+      <p>All Done!</p>
+      <p>Your Total Score is: <span class="score-count">0</span></p>
+      <div>
+        <form onsubmit="sendFormDetails(event)" id="usernameForm">
+          <div>
+            <span>Enter Initials:</span
+            ><input type="text" name="username" /><input
+              type="submit"
+              value="submit"
+            />
+          </div>
+        </form>
       </div>
     </div>
+
     <script type="text/javascript" src="./assets/js/script.js"></script>
   </body>
 </html>
