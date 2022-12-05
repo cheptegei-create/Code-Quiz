@@ -101,6 +101,49 @@ function startTimer(duration, timeElement) {
     }, 1000);
 }
 
+//creating a send form details for the leader board
+function sendFormDetails(event) {
+    event.preventDefault();
+    var username = localStorage.getItem("username");
+    var leaderBoardData = {
+        username: username,
+        score: totalScore
+    }
+
+    leaderBoard.push(leaderBoardData);
+    var leaderBoardContainer = document.createElement('div');
+    var headerElm = document.createElement('h1');
+    headerElm.textContent = 'Highscores';
+    leaderBoardContainer.setAttribute("id", "leaderboard");
+    var list = document.createElement('ol');
+    var btnClear = document.createElement('button');
+
+    btnClear.setAttribute('class', 'btn');
+    btnClear.textContent = 'Go Back';
+    btnClear.addEventListener('click', resetQuiz);
+
+    var sortedLeaderBoard = leaderBoard.sort((a, b) => b.score-a.score);
+
+    for (var x=0; x<sortedLeaderBoard.length; x++) {
+        var listItem = document.createElement('li');
+        //https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode
+        listItem.appendChild(document.createTextNode('${leaderBoard[x].username} - ${leaderBoard[x].score}'));
+        list.appendChild(listItem);
+    }
+    leaderBoardContainer.appendChild(headerElm);
+    leaderBoardContainer.appendChild(list);
+    leaderBoardContainer.appendChild(btnClear);
+
+    document.querySelector('.main').appendChild(leaderBoardContainer);
+    scores.style.display = "none";
+}
+
+//Creating a removeElement function
+
+function removeElement(id) {
+    var elem = document.getElementById(id);
+    return elem.parentNode.removeChild(elem);
+}
 /*
 
 //creating an init function which will be called when the page loads
