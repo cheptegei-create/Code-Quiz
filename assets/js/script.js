@@ -2,7 +2,7 @@
 var quiz = document.querySelector("#question");
 /*var choices = document.querySelectorAll("#choices");*/
 var message = document.querySelector("#message");
-var timer = document.querySelector("#timer");
+/*var timer = document.querySelector("#timer");*/
 var startBtn = document.querySelector("#start-btn");
 var highScoreBtn = document.querySelector("#highscore-btn");
 var scores = document.querySelector(".result");
@@ -79,8 +79,28 @@ function resetQuiz() {
     container.style.display = "none";
     timeElement;
     totalScore = 60;
+
     startTimer(totalScore, timeElement);
 }
+
+//creating the time function
+function startTimer(duration, timeElement) {
+    var timer = duration, seconds;
+    var timerInterval = setInterval(function () {
+        timeElement.textContent = timer;
+        --totalScore;
+        timer = totalScore;
+
+        if (--timer < 0 || questions.length === 0) {
+            document.querySelector('score-count').innerHTML = totalScore;
+            quiz.style.display = "none";
+            scores.style.display = "block";
+            container.style.display = "none";
+            clearInterval(timerInterval);
+        }
+    }, 1000);
+}
+
 /*
 
 //creating an init function which will be called when the page loads
