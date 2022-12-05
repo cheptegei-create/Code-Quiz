@@ -5,7 +5,7 @@ var message = document.querySelector("#message");
 var timer = document.querySelector("#timer");
 var startBtn = document.querySelector("#start-btn");
 var highScoreBtn = document.querySelector("#highscore-btn");
-var scores = document.querySelector(".scores");
+var scores = document.querySelector(".result");
 var timeElement = document.querySelector("#timer-count");
 var container = document.querySelectorAll(".container");
 /*var ch1 = document.querySelectorAll(".choice1");
@@ -69,6 +69,18 @@ var leaderBoard = [];
 var totalScore = 60;
 var deductedPoints = 10;
 
+//Creating a resetQuiz function
+function resetQuiz() {
+    questions = Object.assign(askedQuestions);
+    askedQuestions = [questions.pop()];
+    removeElement('leaderboard');
+    quiz.style.display = "block";
+    scores.style.display = "none";
+    container.style.display = "none";
+    timeElement;
+    totalScore = 60;
+    startTimer(totalScore, timeElement);
+}
 /*
 
 //creating an init function which will be called when the page loads
