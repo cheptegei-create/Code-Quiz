@@ -1,7 +1,7 @@
 //targeting elements in the HTML section
-var quiz = document.querySelector("#question");
+var quiz = document.querySelector(".quiz");
 /*var choices = document.querySelectorAll("#choices");*/
-var message = document.querySelector("#message");
+/*var message = document.querySelector("#message");*/
 /*var timer = document.querySelector("#timer");*/
 var startBtn = document.querySelector("#start-btn");
 var highScoreBtn = document.querySelector("#highscore-btn");
@@ -144,6 +144,36 @@ function removeElement(id) {
     var elem = document.getElementById(id);
     return elem.parentNode.removeChild(elem);
 }
+//creating a function for choice selection by the user
+function onClickHandler(event) {
+    var userAnswer = event.target.getAttribute('data-value'), message;
+    if (userAnswer === askedQuestions[askedQuestions.length-1]['answer']) {
+        message = 'correct';
+    } else {
+        message = 'wrong';
+        totalScore -= deductedPoints;
+    }
+    var messageElem = document.createElement('div');
+    messageElem.setAttribute("id", "message");
+    messageElem.appendChild(document.createTextNode(message));
+    document.querySelector('#quiz-container').appendChild(messageElem);
+
+    var renderTimeout = setTimeout(() => {
+        var elementExists = document.querySelector('#message');
+        if (elementExists) {
+            removeElement('quiz-container');
+            var currentQuestion = questions.pop();
+            if (currentQuestion == undefined) {
+                clearTimeout(renderTimeout);
+                return;
+            }
+            quiz.appendChild(renderQuizView(currentQuestion));
+            askedQuestions.push(currentQuestion);
+        }
+    }, 1000);
+}
+
+
 /*
 
 //creating an init function which will be called when the page loads
