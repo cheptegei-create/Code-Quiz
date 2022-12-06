@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
-    <div class="container show">
+    <div id="container" class="container landing show">
       <h1>Are you ready for the code quiz?</h1>
       <p>
         Try to answer all questions correctly. Make sure you are in a silent
@@ -19,15 +19,15 @@
       <a href="" id="highscore-btn" class="btn"><button>High Score</button></a>
     </div>
 
-    <div class="main">
-      <div class="container quiz">
+    <div id="main" class="container quest">
+      <div id="quiz">
         <div class="timer-section">
           <h3>Remaining time:<span id="timer-count">0</span></h3>
         </div>
       </div>
-      <div class="result">
+      <div id="result">
         <p>All Done!</p>
-        <p>Your Total Score is: <span class="score-count">0</span></p>
+        <p>Your Total Score is: <span id="score-count">0</span></p>
         <div>
           <form onsubmit="sendFormDetails(event)" id="usernameForm">
             <div>
