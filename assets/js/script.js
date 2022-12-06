@@ -83,7 +83,9 @@ function sendFormDetails(event) {
     score: totalScore,
   };
 
-  leaderBoard.push(leaderBoardData);
+  localStorage.setItem("leaderBoardData", JSON.stringify(leaderBoardData));
+  
+  leaderBoard.push(JSON.parse(localStorage.getItem("leaderBoardData")));
   var leaderboardContainer = document.createElement("div");
   var headerElm = document.createElement("h1");
   headerElm.textContent = "Highscores";
@@ -207,8 +209,9 @@ startBtn.addEventListener("click", function (event) {
   var display = document.querySelector("#timer-count");
   startTimer(totalScore, display);
 
-  renderQuizView(questionObj);
+  renderQuizView(questions);
 });
+
 
 //WHEN I click the start button THEN a timer starts and I am presented with a question
 //WHEN I answer a question THEN I am presented with another question
