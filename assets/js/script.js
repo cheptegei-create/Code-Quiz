@@ -127,9 +127,13 @@ function onClickHandler(event) {
     message;
   if (userAnswer === askedQuestions[askedQuestions.length - 1]["answer"]) {
     message = "correct";
-  } else {
+  } else if (
+    userAnswer != askedQuestions[askedQuestions.length - 1]["answer"]
+  ) {
     message = "wrong";
     totalScore -= deductedPoints;
+  } else if (!userAnswer) {
+    return;
   }
   messageElem = document.createElement("div");
   messageElem.setAttribute("id", "message");
@@ -203,9 +207,7 @@ startBtn.addEventListener("click", function (event) {
   var display = document.querySelector("#timer-count");
   startTimer(totalScore, display);
 
-  startTimer(totalScore, display);
-
-  onClickHandler(event);
+  renderQuizView(questionObj);
 });
 
 //WHEN I click the start button THEN a timer starts and I am presented with a question
