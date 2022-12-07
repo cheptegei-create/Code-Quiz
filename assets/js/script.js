@@ -75,6 +75,8 @@ function startTimer(duration, display) {
 //creating a send form details for the leader board
 function sendFormDetails(event) {
   event.preventDefault();
+  var leaderboardArray = [];
+  var newLeaderBoardArray = leaderboardArray.concat(JSON.parse(localStorage.getItem("leaderBoardData")));
   var formEl = document.forms.usernameForm;
   var formData = new FormData(formEl);
   var username = formData.get("username");
@@ -82,10 +84,10 @@ function sendFormDetails(event) {
     username: username,
     score: totalScore,
   };
-
-  localStorage.setItem("leaderBoardData", JSON.stringify(leaderBoardData));
+ newLeaderBoardArray.push(leaderBoardData);
+  localStorage.setItem("leaderBoardData", JSON.stringify(newLeaderBoardArray));
   
-  leaderBoard.push(JSON.parse(localStorage.getItem("leaderBoardData")));
+  
   var leaderboardContainer = document.createElement("div");
   var headerElm = document.createElement("h1");
   headerElm.textContent = "Highscores";
@@ -97,14 +99,16 @@ function sendFormDetails(event) {
   btnClear.textContent = "Go Back";
   btnClear.addEventListener("click", resetQuiz);
 
-  var sortedLeaderBoard = leaderBoard.sort((a, b) => b.score - a.score);
+  var sortedLeaderBoard = newLeaderBoardArray.sort((a, b) => b.score - a.score);
+  console.log(sortedLeaderBoard);
 
   for (var x = 0; x < sortedLeaderBoard.length; x++) {
+
     var listItem = document.createElement("li");
     //https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode
     listItem.appendChild(
       document.createTextNode(
-        `${leaderBoard[x].username} - ${leaderBoard[x].score}`
+        `${sortedLeaderBoard[x].username} - ${sortedLeaderBoard[x].score}`
       )
     );
     list.appendChild(listItem);
