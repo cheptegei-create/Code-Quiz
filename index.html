@@ -9,38 +9,42 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
-    <div id="container" class="container landing show">
-      <h1>Are you ready for the code quiz?</h1>
-      <p>
-        Try to answer all questions correctly. Make sure you are in a silent
-        place free of distructions.
-      </p>
-      <a href="" class="btn" id="start-btn"><button>Start</button></a>
-      <a href="" id="highscore-btn" class="btn"><button>High Score</button></a>
-    </div>
+    <section id="build" >
+      <div id="container" class="container landing show">
+        <h1>Are you ready for the code quiz?</h1>
+        <p>
+          Try to answer all questions correctly. Make sure you are in a silent
+          place free of distructions.
+        </p>
+        <a href="" class="btn" id="start-btn"><button>Start</button></a>
+        <a href="" id="highscore-btn" class="btn"
+          ><button>High Score</button></a
+        >
+      </div>
 
-    <div id="main" class="container quest">
-      <div id="quiz">
-        <div class="timer-section">
-          <h3>Remaining time:<span id="timer-count">0</span></h3>
+      <div id="main" class="container quest hidden">
+        <div id="quiz">
+          <div class="timer-section">
+            <h3>Remaining time:<span id="timer-count">0</span></h3>
+          </div>
+        </div>
+        <div id="result">
+          <p>All Done!</p>
+          <p>Your Total Score is: <span id="score-count">0</span></p>
+          <div>
+            <form onsubmit="sendFormDetails(event)" id="usernameForm">
+              <div>
+                <span>Enter Initials:</span
+                ><input type="text" name="username" /><input
+                  type="submit"
+                  value="submit"
+                />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-      <div id="result">
-        <p>All Done!</p>
-        <p>Your Total Score is: <span id="score-count">0</span></p>
-        <div>
-          <form onsubmit="sendFormDetails(event)" id="usernameForm">
-            <div>
-              <span>Enter Initials:</span
-              ><input type="text" name="username" /><input
-                type="submit"
-                value="submit"
-              />
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+    </section>
 
     <script type="text/javascript" src="./assets/js/script.js"></script>
   </body>
