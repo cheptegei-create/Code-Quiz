@@ -75,8 +75,8 @@ function startTimer(duration, display) {
 //creating a send form details for the leader board
 function sendFormDetails(event) {
   event.preventDefault();
-  var leaderboardArray = [];
-  var newLeaderBoardArray = leaderboardArray.concat(JSON.parse(localStorage.getItem("leaderBoardData")));
+  var newLeaderBoardArray = [];
+  newLeaderBoardArray.concat(JSON.parse(localStorage.getItem("leaderBoardData")));
   var formEl = document.forms.usernameForm;
   var formData = new FormData(formEl);
   var username = formData.get("username");
@@ -99,7 +99,20 @@ function sendFormDetails(event) {
   btnClear.textContent = "Go Back";
   btnClear.addEventListener("click", resetQuiz);
 
-  var sortedLeaderBoard = newLeaderBoardArray.sort((a, b) => b.score - a.score);
+  var sortedLeaderBoard = newLeaderBoardArray.sort((a, b) => {
+    if (a === null) {
+      return 1;
+    }
+    if (b === null) {
+      return -1;
+    }
+    if (a === b) {
+      return 0;
+    }
+
+    return b.score - a.score? -1 : 1;
+  });
+
   console.log(sortedLeaderBoard);
 
   for (var x = 0; x < sortedLeaderBoard.length; x++) {
