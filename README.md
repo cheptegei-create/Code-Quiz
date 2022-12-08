@@ -13,7 +13,7 @@ As a coder, one needs to be prepared for the technical interview session which e
 
 ## Installation
 
-Just click the following link to view the website 
+Just click the following link to view the website https://cheptegei-create.github.io/fourChallenge/
 
 ## Usage
 
