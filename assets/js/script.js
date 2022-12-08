@@ -75,8 +75,7 @@ function startTimer(duration, display) {
 //creating a send form details for the leader board
 function sendFormDetails(event) {
   event.preventDefault();
-  var newLeaderBoardArray = [];
-  newLeaderBoardArray.concat(JSON.parse(localStorage.getItem("leaderBoardData")));
+  var otherArray = JSON.parse(localStorage.getItem("leaderBoardData")) || [];
   var formEl = document.forms.usernameForm;
   var formData = new FormData(formEl);
   var username = formData.get("username");
@@ -84,8 +83,8 @@ function sendFormDetails(event) {
     username: username,
     score: totalScore,
   };
- newLeaderBoardArray.push(leaderBoardData);
-  localStorage.setItem("leaderBoardData", JSON.stringify(newLeaderBoardArray));
+ otherArray.push(leaderBoardData);
+  localStorage.setItem("leaderBoardData", JSON.stringify(otherArray));
   
   
   var leaderboardContainer = document.createElement("div");
@@ -99,7 +98,7 @@ function sendFormDetails(event) {
   btnClear.textContent = "Go Back";
   btnClear.addEventListener("click", resetQuiz);
 
-  var sortedLeaderBoard = newLeaderBoardArray.sort((a, b) => {
+  var sortedLeaderBoard = otherArray.sort((a, b) => {
     if (a === null) {
       return 1;
     }
@@ -132,6 +131,7 @@ function sendFormDetails(event) {
 
   document.getElementById("main").appendChild(leaderboardContainer);
   document.getElementById("result").style.display = "none";
+
 }
 
 //Creating a removeElement function
@@ -227,6 +227,59 @@ startBtn.addEventListener("click", function (event) {
   startTimer(totalScore, display);
 
   renderQuizView(questions);
+});
+
+highScoreBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  var leaderboardContainer = document.createElement("div");
+  var headerElm = document.createElement("h1");
+  headerElm.textContent = "Highscores";
+  leaderboardContainer.setAttribute("id", "leaderboard");
+  var list = document.createElement("ol");
+  console.log(JSON.parse(localStorage.leaderBoardData));
+  var newArray = [];
+  var newObj = newArray.concat(JSON.parse(localStorage.leaderBoardData));
+
+  for (var x=0; x < newObj.length; x++) {
+
+      var listItem = document.createElement("li");
+      //https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode
+      listItem.appendChild(
+        document.createTextNode(
+          `${newObj[x].username} - ${newObj[x].score}`
+        )
+      );
+      list.appendChild(listItem);
+   
+  }
+
+  console.log("button clicked");
+  
+
+  var removeBtn = document.createElement("button");
+  var backBtn = document.createElement("button");
+
+  removeBtn.setAttribute("class", "btn");
+  backBtn.setAttribute("class", "btn");
+  removeBtn.textContent = "Clear";
+  backBtn.textContent = "Back";
+  removeBtn.addEventListener("click", function() {
+    window.localStorage.clear();
+  });
+  backBtn.addEventListener("click", function() {
+    location.reload();
+  });
+
+  leaderboardContainer.appendChild(headerElm);
+  leaderboardContainer.appendChild(list);
+  leaderboardContainer.appendChild(removeBtn);
+  leaderboardContainer.appendChild(backBtn);
+
+  document.getElementById("build").appendChild(leaderboardContainer);
+  document.getElementById("main").style.display = "none";
+  document.getElementById("container").style.display = "none";
+  document.getElementById("leaderboard").style.display = "block";
 });
 
 
