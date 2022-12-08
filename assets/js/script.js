@@ -4,44 +4,44 @@ var highScoreBtn = document.querySelector("#highscore-btn");
 
 var questions = [
   {
-    question: "what is 22 + 10?",
+    question: "which of the following skill do you need to be a successful coder?",
     choices: {
-      one: "2",
-      two: "4",
-      three: "22",
-      four: "32",
-    },
-    answer: "four",
-  },
-  {
-    question: "what is 2 + 2?",
-    choices: {
-      one: "2",
-      two: "4",
-      three: "22",
-      four: "0",
-    },
-    answer: "two",
-  },
-  {
-    question: "what is 16 + 7?",
-    choices: {
-      one: "23",
-      two: "4",
-      three: "22",
-      four: "0",
+      one: "problem-solving",
+      two: "independence",
+      three: "procrastinating",
+      four: "all of the above",
     },
     answer: "one",
   },
   {
-    question: "what is 20 + 4?",
+    question: "when code is compiled it?",
     choices: {
-      one: "2",
-      two: "24",
-      three: "22",
-      four: "0",
+      one: "is read directly from the program",
+      two: "is converted to binary code",
+      three: "is made into a smaller version",
+      four: "runs slower",
     },
     answer: "two",
+  },
+  {
+    question: "a sequence is?",
+    choices: {
+      one: "breaking a problem into smaller parts",
+      two: "a set of steps to complete a task",
+      three: "a design flaw in the program",
+      four: "a set of steps that follow one another in order",
+    },
+    answer: "four",
+  },
+  {
+    question: "coding is?",
+    choices: {
+      one: "a set of instructions given to a computer",
+      two: "the language computer use to communicate",
+      three: "the computer specifying instructions to the user",
+      four: "writing a program in a specific language",
+    },
+    answer: "one",
   },
 ];
 
